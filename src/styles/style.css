@@ -1,10 +1,17 @@
 :root {
   --color-background: #000000;
-  --color-section: #000000;
-  --color-panel: #000000;
+  --color-section: #2c2c2e;
+  --color-panel: #1c1c1e;
   --color-background-text: #ffffff;
   --color-section-text: #ffffff;
   --color-panel-text: #ffffff;
+  --phone-width: 402px;
+  --phone-height: 874px;
+  --phone-gutter: 16px;
+  --phone-frame-width: min(
+    calc((100dvh - var(--phone-gutter) * 2) * 402 / 874),
+    calc(100dvw - var(--phone-gutter) * 2)
+  );
 }
 
 html, body {
@@ -28,6 +35,84 @@ body {
   overflow-x: hidden;
 }
 
+.main-grid,
+.section-page {
+  container-type: inline-size;
+  container-name: phone;
+}
+
+@media (min-width: 500px) {
+  :root {
+    --phone-gutter: 8px;
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+
+  html {
+    background-color: #e7e9ee;
+  }
+
+  html::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 42% 32% at 8% 12%, rgba(55, 130, 255, 0.38), transparent 62%),
+      radial-gradient(ellipse 34% 28% at 88% 10%, rgba(255, 70, 170, 0.28), transparent 58%),
+      radial-gradient(ellipse 28% 22% at 72% 78%, rgba(40, 210, 110, 0.26), transparent 55%),
+      radial-gradient(ellipse 36% 30% at 18% 88%, rgba(255, 170, 40, 0.2), transparent 58%);
+  }
+
+  html::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.55), transparent 48%);
+  }
+
+  body {
+    background-color: transparent;
+    background-image: none;
+  }
+
+  html[data-liquid-glass="on"] body::before {
+    display: none;
+  }
+
+  .main-grid,
+  .section-page {
+    width: var(--phone-frame-width);
+    height: auto;
+    aspect-ratio: 402 / 874;
+    max-height: calc(100dvh - var(--phone-gutter) * 2);
+    margin: 0;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .main-grid {
+    background-color: var(--color-background);
+  }
+
+  .section-page {
+    min-height: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    background-color: var(--color-section);
+  }
+}
+
 html[data-liquid-glass="on"] body::before {
   content: "";
   position: fixed;
@@ -42,6 +127,12 @@ html[data-liquid-glass="on"] body::before {
 
 html[data-liquid-glass="on"] .section-page {
   background-color: color-mix(in srgb, var(--color-section) 78%, transparent);
+}
+
+@media (min-width: 500px) {
+  html[data-liquid-glass="on"] .section-page {
+    background-color: var(--color-section);
+  }
 }
 
 html[data-liquid-glass="on"] .panel,

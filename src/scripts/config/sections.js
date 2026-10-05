@@ -1,6 +1,5 @@
 // Section IDs that expose textual content inside the main grid cards.
 export const CONTENT_SECTION_IDS = [
-    'presentation',
     'hard-skills',
     'soft-skills',
     'education',
@@ -13,7 +12,6 @@ export const CONTENT_SECTION_IDS = [
 
 // Mapping from a card section class to its dedicated page path.
 export const SECTION_PAGE_MAP = {
-    'presentation': 'src/pages/presentation.html',
     'soft-skills': 'src/pages/soft-skills.html',
     'hard-skills': 'src/pages/hard-skills.html',
     'education': 'src/pages/education.html',

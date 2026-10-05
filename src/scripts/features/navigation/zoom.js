@@ -9,7 +9,6 @@ export function zoomIn(sectionClass, options = {}) {
         return null;
     }
 
-    // Switch visual focus from poster (cover) to detailed content.
     const boxCoverElement = document.querySelector(`.${sectionClass} .box-cover`);
     if (boxCoverElement) {
         boxCoverElement.classList.remove('fade-in');

@@ -9,6 +9,30 @@
   max-height: 100%;
 }
 
+.box.dezoom {
+  cursor: pointer;
+}
+
+.box.presentation.no-zoom {
+  cursor: default;
+  overflow: hidden;
+  background-color: #c8c4bc;
+}
+
+.box.presentation .box-image {
+  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  transform: none;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: inherit;
+}
+
 .fullscreen-active {
   transform: scale(1);
   background-color: var(--color-section);
@@ -16,6 +40,20 @@
 
 .zoom-clone {
   cursor: zoom-out;
+  container-type: inline-size;
+  container-name: zoom;
+}
+
+.zoom-clone .box-data {
+  padding: 20px !important;
+}
+
+.zoom-clone .title {
+  font-size: 5cqw;
+}
+
+.zoom-clone .content {
+  font-size: 3cqw;
 }
 
 .box-image {

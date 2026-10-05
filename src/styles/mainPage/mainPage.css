@@ -9,7 +9,7 @@ html, body {
   display: none;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 2fr 3fr 2fr;
-  gap: clamp(5px, 1vw, 5px);
+  gap: 5px;
   margin: 5px;
   height: calc(100vh - 10px);
   height: calc(100dvh - 10px);
@@ -21,7 +21,7 @@ html, body {
   grid-column: 2;
   grid-row: 1;
   grid-template-rows: repeat(2, 1fr);
-  gap: clamp(5px, 1vw, 10px);
+  gap: 5px;
 }
 
 .c1-r2 {
@@ -29,7 +29,7 @@ html, body {
   grid-column: 1;
   grid-row: 2;
   grid-template-rows: repeat(3, 1fr);
-  gap: clamp(5px, 1vw, 10px);
+  gap: 5px;
 }
 
 .c3-r2 {
@@ -37,7 +37,7 @@ html, body {
   grid-row: 2;
   display: grid;
   grid-template-rows: 2fr 1fr;
-  gap: clamp(5px, 1vw, 10px);
+  gap: 5px;
 }
 
 .one { grid-column: 1; grid-row: 1; }
@@ -53,3 +53,13 @@ html, body {
 .eleven { grid-column: 1; grid-row: 3; }
 .twelve { grid-column: 2; grid-row: 3; }
 .thirteen { grid-column: 3; grid-row: 3; }
+
+@media (min-width: 500px) {
+  .main-grid {
+    height: auto;
+    margin: 0;
+    padding: 5px;
+    background: var(--color-background);
+    border-radius: 20px;
+  }
+}

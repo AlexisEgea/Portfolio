@@ -1,13 +1,76 @@
 import {
     PANEL_EXPAND_DURATION_MS,
     PANEL_EXPAND_EASING,
-    PANEL_EXPAND_HEIGHT_RATIO,
-    PANEL_EXPAND_INSET_MOBILE,
-    PANEL_EXPAND_MAX_HEIGHT
+    PANEL_EXPAND_INSET_X,
+    PANEL_EXPAND_VERTICAL_RATIO
 } from '../../config/panel.js';
-import { qsa } from '../../shared/dom.js';
+import { qsa, qs } from '../../shared/dom.js';
 
 let activeExpansion = null;
+
+function getFrame() {
+    return qs('.section-page') || document.body;
+}
+
+function getViewportRect() {
+    const viewport = window.visualViewport;
+    if (viewport) {
+        return {
+            top: viewport.offsetTop,
+            left: viewport.offsetLeft,
+            width: viewport.width,
+            height: viewport.height
+        };
+    }
+
+    return {
+        top: 0,
+        left: 0,
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
+}
+
+function intersectRects(first, second) {
+    const top = Math.max(first.top, second.top);
+    const left = Math.max(first.left, second.left);
+    const right = Math.min(first.left + first.width, second.left + second.width);
+    const bottom = Math.min(first.top + first.height, second.top + second.height);
+
+    return {
+        top,
+        left,
+        width: Math.max(0, right - left),
+        height: Math.max(0, bottom - top)
+    };
+}
+
+function getFrameRect() {
+    const viewport = getViewportRect();
+    const section = qs('.section-page');
+    if (section && window.matchMedia('(min-width: 500px)').matches) {
+        const rect = section.getBoundingClientRect();
+        return intersectRects({
+            top: rect.top,
+            left: rect.left,
+            width: rect.width,
+            height: rect.height
+        }, viewport);
+    }
+
+    return viewport;
+}
+
+function coverFrame(element) {
+    const frameRect = getFrameRect();
+    element.style.inset = 'auto';
+    applyRect(element, {
+        top: frameRect.top,
+        left: frameRect.left,
+        width: frameRect.width,
+        height: frameRect.height
+    });
+}
 
 // Returns true when the user prefers reduced motion.
 function prefersReducedMotion() {
@@ -23,39 +86,16 @@ function getExpandTransition() {
         .join(', ');
 }
 
-// Computes the expanded card bounds: mobile keeps side insets, desktop uses equal margins.
+// Computes the expanded card bounds inside the phone frame.
 function getExpandedRect() {
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    const isMobile = viewportWidth <= 768;
-
-    if (isMobile) {
-        const width = viewportWidth - PANEL_EXPAND_INSET_MOBILE * 2;
-        const height = Math.min(
-            PANEL_EXPAND_MAX_HEIGHT,
-            viewportHeight * PANEL_EXPAND_HEIGHT_RATIO,
-            viewportHeight - PANEL_EXPAND_INSET_MOBILE * 2
-        );
-
-        return {
-            top: (viewportHeight - height) / 2,
-            left: (viewportWidth - width) / 2,
-            width,
-            height
-        };
-    }
-
-    const height = Math.min(
-        PANEL_EXPAND_MAX_HEIGHT,
-        viewportHeight * PANEL_EXPAND_HEIGHT_RATIO
-    );
-    const inset = (viewportHeight - height) / 2;
+    const frameRect = getFrameRect();
+    const verticalInset = frameRect.height * PANEL_EXPAND_VERTICAL_RATIO;
 
     return {
-        top: inset,
-        left: inset,
-        width: viewportWidth - inset * 2,
-        height
+        top: frameRect.top + verticalInset,
+        left: frameRect.left + PANEL_EXPAND_INSET_X,
+        width: Math.max(0, frameRect.width - PANEL_EXPAND_INSET_X * 2),
+        height: Math.max(0, frameRect.height - verticalInset * 2)
     };
 }
 
@@ -164,8 +204,10 @@ function expandPanel(panel) {
     panel.classList.add('is-source-hidden');
     panel.setAttribute('aria-expanded', 'true');
     panel.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(overlay);
-    document.body.appendChild(clone);
+    coverFrame(overlay);
+    const frame = getFrame();
+    frame.appendChild(overlay);
+    frame.appendChild(clone);
     document.body.classList.add('is-panel-expanded');
     document.body.style.overflow = 'hidden';
 
@@ -210,6 +252,7 @@ function expandPanel(panel) {
         if (!activeExpansion || activeExpansion.isClosing) {
             return;
         }
+        coverFrame(overlay);
         applyRect(clone, getExpandedRect());
     };
     window.addEventListener('resize', onResize);

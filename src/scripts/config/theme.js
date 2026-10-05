@@ -1,12 +1,12 @@
-// Default appearance matches the current dark site.
+// Dark tiles sit on black like the iOS keynote grid; light uses white cards on gray.
 export const THEME_PRESETS = {
     dark: {
         background: '#000000',
-        section: '#000000',
-        panel: '#000000'
+        section: '#2c2c2e',
+        panel: '#1c1c1e'
     },
     light: {
-        background: '#ffffff',
+        background: '#f2f2f7',
         section: '#ffffff',
         panel: '#ffffff'
     }

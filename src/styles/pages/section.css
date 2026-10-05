@@ -1,20 +1,22 @@
 .section-page {
-    min-height: 100vh;
+    min-height: 100svh;
     background-color: var(--color-section);
     color: var(--color-section-text);
-    padding: 50px;
+    padding: 16px 16px calc(16px + env(safe-area-inset-bottom, 0px));
 }
 
 .section-title {
-    font-size: 2.5vw;
+    font-size: 5vw;
+    font-size: 5cqw;
     font-weight: 300;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 12px;
 }
 
 .section-content {
     width: 100%;
-    font-size: 1.5vw;
+    font-size: 3vw;
+    font-size: 3cqw;
     line-height: 1.6;
 }
 
@@ -24,16 +26,12 @@
     margin: 18px 0;
 }
 
-@media screen and (max-width: 768px) {
+@media (min-width: 500px) {
     .section-page {
-        padding: 20px;
-    }
-
-    .section-title {
-        font-size: 5vw;
-    }
-
-    .section-content {
-        font-size: 3vw;
+        min-height: 0;
+        height: auto;
+        max-height: calc(100dvh - var(--phone-gutter) * 2);
+        border-radius: 20px;
+        overflow: auto;
     }
 }

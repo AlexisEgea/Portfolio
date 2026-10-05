@@ -1,11 +1,13 @@
 .title {
-    font-size: 2.5vw;
+    font-size: 5vw;
+    font-size: 5cqw;
     font-weight: 300;
     text-align: center;
 }
 
 .content {
-    font-size: 1.5vw;
+    font-size: 3vw;
+    font-size: 3cqw;
     font-weight: 300;
     margin-top: 30px;
 }
@@ -22,22 +24,8 @@
 }
 
 .cv-image {
-    width: 400px;
+    width: 200px;
     height: auto;
     cursor: pointer;
     transition: transform 0.3s ease;
-}
-
-@media screen and (max-width: 768px) {
-    .title {
-        font-size: 5vw;
-    }
-
-    .content {
-        font-size: 3vw;
-    }
-
-    .cv-image {
-        width: 200px;
-    }
 }

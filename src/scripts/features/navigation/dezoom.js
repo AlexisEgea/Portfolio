@@ -42,7 +42,6 @@ function prepareCloneForDezoom(clone) {
     });
 
     if (cover) {
-        // Keep visibility visible so the poster can fade, not pop in later.
         cover.style.opacity = '0';
     }
 

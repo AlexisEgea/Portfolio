@@ -19,7 +19,7 @@
 
 .settings-modes {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 12px;
 }
 
@@ -46,12 +46,14 @@
 }
 
 .settings-mode-title {
-    font-size: 1.4vw;
+    font-size: 4.4vw;
+    font-size: 4.4cqw;
     font-weight: 300;
 }
 
 .settings-mode-details {
-    font-size: 1vw;
+    font-size: 3.2vw;
+    font-size: 3.2cqw;
     line-height: 1.4;
     color: color-mix(in srgb, var(--color-panel-text) 85%, transparent);
 }
@@ -65,7 +67,8 @@
 }
 
 .settings-colors-title {
-    font-size: 1.2vw;
+    font-size: 3.2vw;
+    font-size: 3.2cqw;
     font-weight: 300;
     text-align: center;
     margin-bottom: 8px;
@@ -81,7 +84,8 @@
 }
 
 .settings-color-label {
-    font-size: 1.1vw;
+    font-size: 3.2vw;
+    font-size: 3.2cqw;
     color: var(--color-panel-text);
 }
 
@@ -101,20 +105,4 @@
 
 .panel-expand-clone .settings-control {
     pointer-events: auto;
-}
-
-@media screen and (max-width: 768px) {
-    .settings-modes {
-        grid-template-columns: 1fr;
-    }
-
-    .settings-mode-title {
-        font-size: 4.4vw;
-    }
-
-    .settings-mode-details,
-    .settings-color-label,
-    .settings-colors-title {
-        font-size: 3.2vw;
-    }
 }

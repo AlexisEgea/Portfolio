@@ -5,12 +5,12 @@
     {
       "id": "dark",
       "title": "Dark",
-      "details": "Current site colors: black backgrounds and white text."
+      "details": "Black page with dark gray tiles, like the iOS dark grid."
     },
     {
       "id": "light",
       "title": "Light",
-      "details": "White backgrounds with text that stays readable."
+      "details": "White tiles on a light gray page, like the iOS light grid."
     },
     {
       "id": "custom",

@@ -29,8 +29,8 @@
 @media (min-width: 500px) {
     .section-page {
         min-height: 0;
-        height: auto;
-        max-height: calc(100dvh - var(--phone-gutter) * 2);
+        height: var(--phone-height);
+        max-height: none;
         border-radius: 20px;
         overflow: auto;
     }

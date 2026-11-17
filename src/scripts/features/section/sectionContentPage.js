@@ -5,7 +5,7 @@ import { bindPanelExpansion } from './expandPanel.js';
 import { PANEL_RENDERERS } from '../../config/panel.js';
 import { qs } from '../../shared/dom.js';
 
-const PANEL_INTERACTION_SELECTOR = '.panel, .panel-expand-clone, .panel-expand-overlay';
+const PANEL_INTERACTION_SELECTOR = '.panel, .panel-expand-clone, .panel-expand-overlay, .desktop-gate';
 
 // Binds "click anywhere / Escape" return behavior for section pages.
 function bindReturnShortcut(sectionName) {

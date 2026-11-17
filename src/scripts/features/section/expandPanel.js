@@ -31,34 +31,8 @@ function getViewportRect() {
     };
 }
 
-function intersectRects(first, second) {
-    const top = Math.max(first.top, second.top);
-    const left = Math.max(first.left, second.left);
-    const right = Math.min(first.left + first.width, second.left + second.width);
-    const bottom = Math.min(first.top + first.height, second.top + second.height);
-
-    return {
-        top,
-        left,
-        width: Math.max(0, right - left),
-        height: Math.max(0, bottom - top)
-    };
-}
-
 function getFrameRect() {
-    const viewport = getViewportRect();
-    const section = qs('.section-page');
-    if (section && window.matchMedia('(min-width: 500px)').matches) {
-        const rect = section.getBoundingClientRect();
-        return intersectRects({
-            top: rect.top,
-            left: rect.left,
-            width: rect.width,
-            height: rect.height
-        }, viewport);
-    }
-
-    return viewport;
+    return getViewportRect();
 }
 
 function coverFrame(element) {

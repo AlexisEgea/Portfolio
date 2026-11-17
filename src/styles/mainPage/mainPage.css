@@ -53,13 +53,3 @@ html, body {
 .eleven { grid-column: 1; grid-row: 3; }
 .twelve { grid-column: 2; grid-row: 3; }
 .thirteen { grid-column: 3; grid-row: 3; }
-
-@media (min-width: 500px) {
-  .main-grid {
-    height: var(--phone-height);
-    margin: 0;
-    padding: 5px;
-    background: var(--color-background);
-    border-radius: 20px;
-  }
-}

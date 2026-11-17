@@ -1,7 +1,3 @@
-export function isDesktopPhoneFrame() {
-    return window.matchMedia('(min-width: 500px)').matches;
-}
-
 export function createZoomClone(box, boxRect) {
     const clone = box.cloneNode(true);
     clone.classList.add('zoom-clone');
@@ -23,23 +19,8 @@ export function getStableViewportHeightPx() {
     return `${window.innerHeight}px`;
 }
 
-// Places the clone in fullscreen, matching the section-page viewport.
+// Places the clone in fullscreen over the phone viewport.
 export function applyFullscreenCloneStyle(clone) {
-    const frame = document.querySelector('.main-grid') || document.querySelector('.section-page');
-    if (frame) {
-        const rect = frame.getBoundingClientRect();
-        clone.style.top = `${rect.top}px`;
-        clone.style.left = `${rect.left}px`;
-        clone.style.width = `${rect.width}px`;
-        clone.style.height = `${rect.height}px`;
-        clone.style.transform = 'scale(1)';
-        if (isDesktopPhoneFrame()) {
-            clone.style.borderRadius = '20px';
-            clone.style.overflow = 'hidden';
-        }
-        return;
-    }
-
     clone.style.top = '0';
     clone.style.left = '0';
     clone.style.width = '100vw';

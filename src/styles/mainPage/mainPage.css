@@ -56,7 +56,7 @@ html, body {
 
 @media (min-width: 500px) {
   .main-grid {
-    height: auto;
+    height: var(--phone-height);
     margin: 0;
     padding: 5px;
     background: var(--color-background);

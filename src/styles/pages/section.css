@@ -25,13 +25,3 @@
     border-top: 1px solid color-mix(in srgb, var(--color-section-text) 20%, transparent);
     margin: 18px 0;
 }
-
-@media (min-width: 500px) {
-    .section-page {
-        min-height: 0;
-        height: auto;
-        max-height: calc(100dvh - var(--phone-gutter) * 2);
-        border-radius: 20px;
-        overflow: auto;
-    }
-}
